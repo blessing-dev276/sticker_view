@@ -5,9 +5,11 @@ import 'stickerview.dart';
 class DraggableStickers extends StatefulWidget {
   //List of stickers (elements)
   final List<Sticker>? stickerList;
+  final Function()? onTap;
+  final Function()? onEdit;
 
   // ignore: use_key_in_widget_constructors
-  const DraggableStickers({this.stickerList});
+  const DraggableStickers({this.stickerList, this.onTap, this.onEdit});
   @override
   State<DraggableStickers> createState() => _DraggableStickersState();
 }
@@ -19,6 +21,7 @@ class _DraggableStickersState extends State<DraggableStickers> {
   final _initialStickerScale = 5.0;
 
   List<Sticker> stickers = [];
+  Function()? onEdit;
   @override
   void initState() {
     setState(() {
@@ -36,7 +39,7 @@ class _DraggableStickersState extends State<DraggableStickers> {
               Positioned.fill(
                 child: GestureDetector(
                   key: const Key('stickersView_background_gestureDetector'),
-                  onTap: () {},
+                  onTap: widget.onTap,
                 ),
               ),
               for (final sticker in stickers)
@@ -67,7 +70,7 @@ class _DraggableStickersState extends State<DraggableStickers> {
                   },
 
                   // To edit (Not implemented yet)
-                  onEdit: () {},
+                  onEdit: widget.onEdit,
 
                   // To Delete the sticker
                   onDelete: () async {
