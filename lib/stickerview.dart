@@ -79,13 +79,22 @@ class StickerViewState extends State<StickerView> {
   Widget build(BuildContext context) {
     return stickerList != null
         ? Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               //For capturing screenshot of the widget
-              DraggableStickers(
-                onEdit: onEdit,
-                onTap: onTap,
-                stickerList: stickerList,
+              Container(
+                decoration: const BoxDecoration(
+                  color: Colors.transparent,
+                ),
+                height:
+                    widget.height ?? MediaQuery.of(context).size.height * 0.9,
+                width: widget.width ?? MediaQuery.of(context).size.width,
+                child:
+                    //DraggableStickers class in which stickerList is passed
+                    DraggableStickers(
+                  onEdit: onEdit,
+                  onTap: onTap,
+                  stickerList: stickerList,
+                ),
               ),
             ],
           )
