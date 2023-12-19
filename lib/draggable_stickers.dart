@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
+
 import 'draggable_resizable.dart';
 import 'stickerview.dart';
 
 class DraggableStickers extends StatefulWidget {
   //List of stickers (elements)
   final List<Sticker>? stickerList;
-  final Function()? onTap;
   final Function()? onEdit;
 
   // ignore: use_key_in_widget_constructors
-  const DraggableStickers({this.stickerList, this.onTap, this.onEdit});
+  const DraggableStickers({this.stickerList, this.onEdit});
   @override
   State<DraggableStickers> createState() => _DraggableStickersState();
 }
@@ -21,7 +21,7 @@ class _DraggableStickersState extends State<DraggableStickers> {
   final _initialStickerScale = 5.0;
 
   List<Sticker> stickers = [];
-  Function()? onEdit;
+
   @override
   void initState() {
     setState(() {
@@ -39,7 +39,7 @@ class _DraggableStickersState extends State<DraggableStickers> {
               Positioned.fill(
                 child: GestureDetector(
                   key: const Key('stickersView_background_gestureDetector'),
-                  onTap: widget.onTap,
+                  onTap: () {},
                 ),
               ),
               for (final sticker in stickers)
